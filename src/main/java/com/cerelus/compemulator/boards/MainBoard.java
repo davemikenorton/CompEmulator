@@ -11,15 +11,24 @@ import org.springframework.stereotype.Service;
 public class MainBoard {
 
     private final InvertorInteger invertorInteger;
+    private final InvertorInteger invertorInteger2;
 
     private Integer in = 0b1100;
     private Integer grade = 4;
 
+
     @Scheduled(fixedRate = 1000)
     public void start() {
-        InInteger inInteger = new InInteger();
-        inInteger.setIn(in);
         invertorInteger.setGrade(grade);
-        System.out.println("In: " + in + " Out: " + invertorInteger.make(inInteger).translate());
+        invertorInteger2.setGrade(grade);
+
+        InInteger inInteger1 = new InInteger();
+        InInteger inInteger2 = new InInteger();
+        inInteger1.setIn(in);
+
+        Integer invert = invertorInteger.make(inInteger1).translate();
+        System.out.println("In: " + in + " Out: " + invert);
+        inInteger2.setIn(invert);
+        System.out.println("In: " + invert + " Out: " + invertorInteger.make(inInteger2).translate());
     }
 }
